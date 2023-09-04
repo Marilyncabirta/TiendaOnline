@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descripcion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+</head>
+<body>
+    {% block content %}
+    <h2>Descripcion del producto</h2>       
+       <div>
+           <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            
+                    <td>{{object.nombre}}</td>
+                    <td>{{object.precio}}</td>
+                    
+           
+            </tbody>
+            </table>
+        </div>
+             
+    {% endblock %}
+    
+</body>
+</html>
+
+

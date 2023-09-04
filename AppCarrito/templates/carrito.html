@@ -1,0 +1,57 @@
+<script src="https://www.paypal.com/sdk/js?client-id=AbWZ1uNCIqjSJRDN0iDPnFeMJmHZ1qSecRo4IrIVDGeOor1LQWdiJwvJvM2CSzOAO1kte0TuAJrowLPz&currency=USD"></script>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr><th>Carrito</th></tr>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if request.session.carrito.items %}
+            {% for key,value in request.session.carrito.items %}
+            <tr>
+                <td>{{value.nombre}}</td>
+                <td>{{value.precio}}</td>
+                <td>{{value.cantidad}}</td>
+                <td>{{value.subtotal}}</td>
+                <td><a href="{% url 'Agregar' key %}" class="btn badge btn-dark">+</a></td>
+                <td><a href="{% url 'Sacar' key %}" class="btn badge btn-dark">-</a></td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr><td colspan="4"><p>No hay Productos Seleccionados</p></td></tr>
+            {% endif %}
+           
+            <tr>
+                <td><a class="btn btn-dark" colspan="2">Total a pagar:  </a><h4>{{total_carrito}} € </h4></td>
+                <td colspan="4"><a href="{% url 'Limpiar'%}" class="btn btn-dark">Vaciar Carrito</a></td>
+            </tr>
+            <td><div id="paypal-button-container"></div></td>
+        </tbody>
+    </table>
+
+    
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value:{{total_carrito}},
+                        }
+                    }]
+                });
+            },
+            }).render('#paypal-button-container');
+     </script>
+</body>  
+        
+</div>
