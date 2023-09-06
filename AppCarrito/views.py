@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from AppGestion.models import Producto
 from AppCarrito.Carrito import Carrito
+from django.views.generic import DetailView
 
 # Create your views here.
 def tienda(request):
@@ -23,3 +24,10 @@ def limpiar_carrito(request):
     carrito=Carrito(request)
     carrito.limpiar()
     return redirect('tienda')
+
+class ProductoDetailView(DetailView):
+    model=Producto
+    template_name='descripcionProducto.html'
+    def get_object(self):
+        objeto=self.model.objects.get(id=self.kwargs['prod_id'])
+        return objeto

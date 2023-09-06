@@ -1,14 +1,15 @@
 <script src="https://www.paypal.com/sdk/js?client-id=AbWZ1uNCIqjSJRDN0iDPnFeMJmHZ1qSecRo4IrIVDGeOor1LQWdiJwvJvM2CSzOAO1kte0TuAJrowLPz&currency=USD"></script>
 
-<div>
-    <table class="table">
+<div style="border-radius:20px">
+    <h3>Tu Carrito</h3>
+    <table class="table table-striped " style="border-radius:20px" >
         <thead>
-            <tr><th>Carrito</th></tr>
-            <tr>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,8 @@
                 <td>{{value.subtotal}}</td>
                 <td><a href="{% url 'Agregar' key %}" class="btn badge btn-dark">+</a></td>
                 <td><a href="{% url 'Sacar' key %}" class="btn badge btn-dark">-</a></td>
+                
+               
             </tr>
             {% endfor %}
             {% else %}
@@ -28,12 +31,14 @@
             {% endif %}
            
             <tr>
-                <td><a class="btn btn-dark" colspan="2">Total a pagar:  </a><h4>{{total_carrito}} € </h4></td>
+                <td><a class="btn btn-dark" colspan="2">Total:  </a><h4>{{total_carrito}} € </h4></td>
                 <td colspan="4"><a href="{% url 'Limpiar'%}" class="btn btn-dark">Vaciar Carrito</a></td>
+                <td></td>
             </tr>
-            <td><div id="paypal-button-container"></div></td>
+    
         </tbody>
     </table>
+    <div id="paypal-button-container"></div>
 
     
     <script>

@@ -25,7 +25,7 @@ class ProductoListView(ListView):
     
 class ProductoUpdateView(UpdateView):
     model=Producto
-    template_name='AppGestion'
+    template_name='productos.html'
     fields=['precio_actual','stock_disponible']
     success_url=reverse_lazy('producto')
 
@@ -38,19 +38,34 @@ def insertarProducto(request):
     producto=Producto.objects.create(id=var_id,
                                      nombre=var_nombre,  
                                      imagen1=var_imagen1, 
-                                     precio=var_precio)                                 
-    return redirect('/')    
+                                     precio=var_precio)  
+                                
+    return redirect('/gestion')    
 
 def eliminarProducto(request,prod_id):
     producto=Producto.objects.get(id=prod_id)  
     producto.delete()
-    return redirect('/verProducto')
+    return redirect('/gestion')
     
     
-def modificarProducto(request,prod_id):
-    producto=Producto(id=prod_id)
-    producto.id=8
-    producto.nombre='Zapatillas'
-    producto.imagen1='imagenprod8.jpg'
-    producto.precio=56
-    return redirect('/')
+
+# def modificarProducto(request,prod_id):
+#     producto=Producto.objects.get(id=prod_id)  
+#     producto.id=7
+#     producto.nombre='Camiseta'
+#     producto.imagen1='imagen.jpg'
+#     producto.precio=18
+#     producto.save()
+#     return redirect('/gestion')
+
+
+def modificarProducto(request, prod_id):
+    producto = Producto.objects.get(id=prod_id)
+    if request.method == 'POST':
+        producto.nombre = request.POST['nombre']
+        producto.imagen1 = request.POST['imagen1']
+        producto.precio = request.POST['precio']
+        producto.save()
+        return redirect('producto')
+        
+    return render(request, 'modificar.html', {'producto': producto})

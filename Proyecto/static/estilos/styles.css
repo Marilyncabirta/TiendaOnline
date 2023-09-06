@@ -3,26 +3,26 @@
    margin-bottom: 10px;
 }
 body{
-    background-color: antiquewhite;
+    background-color:wheat;
 }
 nav{
     
-    height: 300px;
+    height: 100px;
 }
 button{
-    padding: 10px;
+    padding: 20px 10px;
     margin: 20px;
     border: 1px solid #9dbeaf ;
     background-color:#9dbeaf ;
     border-radius: 20px;
 }
 th{
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .btn-carrito{
-border-radius: 20px;
-margin-left: 20px;
+border-radius:20px;
+
 }
 .a{
     border-radius: 20px;
