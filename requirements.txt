@@ -1,0 +1,15 @@
+asgiref==3.7.2
+cffi==1.15.1
+cryptography==41.0.3
+distlib==0.3.7
+Django==4.2.2
+djangorestframework==3.14.0
+filelock==3.12.3
+mysql-connector-python==8.1.0
+platformdirs==3.10.0
+protobuf==4.21.12
+pycparser==2.21
+PyMySQL==1.1.0
+pytz==2023.3
+sqlparse==0.4.4
+virtualenv==20.24.4
